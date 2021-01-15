@@ -145,3 +145,65 @@ mounted() {
         }
     }
 ```
+
+API  Test：
+
+1. create action
+1. jbuilder return json
+1. Talend API Tester 
+
+routes.rb
+
+* resources :memos, only: [:index, :create]
+
+create Action
+
+* app/controllers/api/memos_controller.rb
+
+``` ruby
+ def create
+    @memo = Memo.new(memo_params) #instance(call post_params)
+    if @memo.save # do save insance
+      render :show, status: :created # move if succsess / add status
+    else
+      render json: @memo.errors, status: :unprocessable_entity
+    end
+  end
+
+  private # impossible call outer
+    def memo_params #(post_params)
+      params.permit(:title, :description) # params = request-info / params(possible change keys)
+    end
+```
+
+return json on jbuilder
+
+* touch app/views/api/memos/show.json.jbuilder
+
+``` js
+json.title @memo.title
+json.description @memo.description
+```
+
+API Test
+
+* Talend API Tester
+* Post
+* api/memos
+
+add body
+
+``` json
+{
+  "title": "メモのタイトル",
+  "description": "メモの詳細"
+}
+```
+
+* 422 Unprocessable Entity
+
+CSRF（Cross-Site Request Forgery）
+
+* off
+* app/controllers/application_controller.rb
+* protect_from_forgery
