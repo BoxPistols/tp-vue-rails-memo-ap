@@ -207,3 +207,5 @@ CSRF（Cross-Site Request Forgery）
 * off
 * app/controllers/application_controller.rb
 * protect_from_forgery
+
+Post Memo:
