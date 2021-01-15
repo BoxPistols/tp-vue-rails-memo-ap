@@ -110,3 +110,30 @@ Memo:
 [postgreSQL Show DB Yables command](https://qiita.com/Shitimi_613/items/bcd6a7f4134e6a8f0621)
 
 ---
+
+Axis:
+
+* yarn add axios
+
+app/javascript/app.vue
+
+``` js
+// html
+{
+    {
+        memos
+    }
+}
+
+// js
+import axios from 'axios';
+...
+methods: {
+    setMemo: function() {
+        axios.get('/api/memos')
+            .then(response => (
+                this.memos = response.data
+            ))
+    }
+}
+```
