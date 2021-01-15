@@ -109,6 +109,10 @@ jbuilder
 Memo:
 [postgreSQL Show DB Yables command](https://qiita.com/Shitimi_613/items/bcd6a7f4134e6a8f0621)
 
+Auto Reload:
+
+* bin/webpack-dev-server
+
 ---
 
 Axis:
@@ -117,23 +121,27 @@ Axis:
 
 app/javascript/app.vue
 
-``` js
-// html
-{
-    {
-        memos
-    }
-}
+``` html
+<ul>
+    <li v-for="memo in memos" :key="memo.id">
+        {{ memo.title }}： {{ memo.description }}
+    </li>
+</ul>
+```
 
+``` js
 // js
 import axios from 'axios';
 ...
-methods: {
-    setMemo: function() {
-        axios.get('/api/memos')
-            .then(response => (
-                this.memos = response.data
-            ))
+mounted() {
+        this.setMemo();
+    },
+    methods: {
+        setMemo: function() {
+            axios.get('/api/memos')
+                .then(response => (
+                    this.memos = response.data
+                ))
+        }
     }
-}
 ```
