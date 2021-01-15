@@ -41,7 +41,7 @@ export default {
           margin: 10vh auto;
           li {
               font-size: 2em;
-              color: tomato;
+              color: whitesmoke;
           }
       }
   }
