@@ -73,4 +73,33 @@ end
 Check
 
 * rails console
-- Memo.all
+* Memo.all
+
+create route
+
+``` ruby
+ namespace :api, format: 'json' do # namespace for setting path
+    resources :memos, only: [:index]
+  end
+```
+
+* rails routes
+
+create  g
+
+* rails g controller api/memos
+
+constoller
+
+* app/controllers/api/memos_controller.rb
+
+``` ruby
+def index
+    @memos = Memo.order('created_at DESC')
+end
+```
+
+jbuilder
+
+- touch app/views/api/memos/index.json.jbuilder
+    - json.array! @memos, :title, :description  # (instance, key)
