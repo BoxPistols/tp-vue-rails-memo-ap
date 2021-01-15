@@ -115,7 +115,7 @@ Auto Reload:
 
 ---
 
-Axis:
+Axis: MemoList
 
 * yarn add axios
 
