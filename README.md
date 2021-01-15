@@ -101,5 +101,5 @@ end
 
 jbuilder
 
-- touch app/views/api/memos/index.json.jbuilder
-    - json.array! @memos, :title, :description  # (instance, key)
+* touch app/views/api/memos/index.json.jbuilder
+    * json.array! @memos, :title, :description  # (instance, key)
