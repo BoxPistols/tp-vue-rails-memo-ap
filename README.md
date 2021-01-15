@@ -60,7 +60,7 @@ Dummy Data
 * db/seeds.rb
 
 ``` ruby
-    5.times do
+5.times do
   Memo.create(
     title: Faker::Lorem.word,
     description: Faker::Lorem.sentence,
@@ -102,4 +102,11 @@ end
 jbuilder
 
 * touch app/views/api/memos/index.json.jbuilder
-    * json.array! @memos, :title, :description  # (instance, key)
+* json.array! @memos, :title, :description  # (instance, key)
+
+---
+
+Memo:
+[postgreSQL Show DB Yables command](https://qiita.com/Shitimi_613/items/bcd6a7f4134e6a8f0621)
+
+---
