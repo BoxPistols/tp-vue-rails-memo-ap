@@ -8,6 +8,7 @@
         <div>
             <input v-model="title" placeholder="title">
             <input v-model="description" placeholder="description">
+            <button @click="addMemo">メモを追加</button>
         </div>
     </div>
 </template>
@@ -26,11 +27,23 @@ export default {
         this.setMemo();
     },
     methods: {
-        setMemo: function () {
+        setMemo() {
             axios
                 .get("/api/memos")
                 .then((response) => (this.memos = response.data));
         },
+        addMemo(){
+            axios.post('/api/memos',{
+                title: this.title,
+                description: this.description,
+            })
+            .then(res => {
+                this.setMemo();
+            })
+            .catch(err => {
+                console.error(err);
+            })
+        }
     },
 };
 </script>
@@ -50,12 +63,13 @@ export default {
               color: whitesmoke;
           }
       }
-      input, input:focus, input:active{
+      input, input:focus, input:active, button{
           outline: none;
           font-size: 2em;
           border: 2px solid #999;
           padding: .5ch 1ch;
           border-radius: 2ch;
+
       }
   }
 </style>
