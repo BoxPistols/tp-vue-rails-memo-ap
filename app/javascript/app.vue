@@ -9,6 +9,8 @@
             <input v-model="title" placeholder="title">
             <input v-model="description" placeholder="description">
             <button @click="addMemo">メモを追加</button>
+            <!-- TODO -->
+            <!-- <button @click="rmMemo">メモを削除</button> -->
         </div>
     </div>
 </template>
@@ -30,7 +32,7 @@ export default {
         setMemo() {
             axios
                 .get("/api/memos")
-                .then((response) => (this.memos = response.data));
+                .then((res) => (this.memos = res.data));
         },
         addMemo(){
             axios.post('/api/memos',{
@@ -43,7 +45,17 @@ export default {
             .catch(err => {
                 console.error(err);
             })
-        }
+        },
+        //  TODO
+        // rmMemo(){
+        //     axios.delete("/api/memos", {data: {id: memos.id}})
+        //     .then(res => {
+        //         this.setMemo();
+        //     })
+        //     .catch(err => {
+        //         console.error(err);
+        //     })
+        // },
     },
 };
 </script>
